@@ -1,2 +1,5 @@
 ---
-# defaults file for deploy-application
+## Nodes IPs
+ip_manager: 
+ip_worker1:
+ip_worker2:

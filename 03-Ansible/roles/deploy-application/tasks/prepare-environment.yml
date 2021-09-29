@@ -1,0 +1,37 @@
+---
+- name: Update and upgrade ambiente
+  apt:
+    update_cache: yes
+    upgrade: yes
+  tags: 
+    - update-environment
+
+- name: Hostname - manager
+  hostname:
+    name: manager
+  when: "'manager' in inventory_hostname"
+  tags: 
+    - hostname
+
+- name: Hostname - worker1
+  hostname:
+    name: worker1
+  when: "'worker1' in inventory_hostname"
+  tags:
+    - hostname
+
+- name: Hostname - worker2
+  hostname:
+    name: worker2
+  when: "'worker2' in inventory_hostname"
+  tags:
+    - hostname
+
+- name: Reinicia serviço do Docker
+  systemd:
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+    name: docker
+
+...    
