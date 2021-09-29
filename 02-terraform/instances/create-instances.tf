@@ -29,5 +29,5 @@ resource "aws_instance" "docker-hosts" {
 }
 
 output "instance_ip_addr" {
-    value = aws_instance.docker-hosts.private_ip
+    value = aws_instance.docker-hosts[each.key].private_ip
 }
