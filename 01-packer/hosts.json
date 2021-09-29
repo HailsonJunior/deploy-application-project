@@ -6,7 +6,7 @@
         "instance_type": "t2.micro"
     },
 
-    "builders": [{
+    "builders": {
         "type": "amazon-ebs",
         "region": "{{user `aws_region`}}",
         "source_ami": "{{user `ami_id`}}",
@@ -15,7 +15,7 @@
         "ami_name": "hosts-docker",
         "ssh_keypair_name": "IaC",
         "ssh_private_key_file": "IaC.pem"
-    }],
+    },
 
     "providers": [
         {
