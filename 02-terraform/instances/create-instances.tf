@@ -27,7 +27,3 @@ resource "aws_instance" "docker-hosts" {
         name = "${each.key}: ${lookup(each.value, "name", null)}"
     } 
 }
-
-output "instance_ip_addr" {
-    value = aws_instance.docker-hosts[each.key].private_ip
-}

@@ -1,0 +1,7 @@
+---
+- name: Prepare environment and deploy application
+  hosts: 'all'
+  become: yes
+  become_method: sudo
+  roles:
+    - {role: deploy-application, tags: ["deploy"]}
