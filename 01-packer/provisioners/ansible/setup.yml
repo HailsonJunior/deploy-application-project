@@ -1,17 +1,10 @@
 ---
-- name: Setup environment
+- name: Instalação Docker
   hosts: 'all'
   become: yes
   become_method: sudo
   tasks:
-    - name: Update repository environment
-      apt:
-        update_cache: yes
-      
-    - name: Upgrade environment
-      apt:
-        name: "*"
-        state: latest
-
     - name: Install Docker
       shell: curl -fsSL https://get.docker.com/ | bash -
+
+...      
