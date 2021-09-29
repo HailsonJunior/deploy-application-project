@@ -21,9 +21,3 @@ variable "block_type" {
     description = "Tipo do bloco"
     default = "gp2"
 }
-
-variable "key_pair" {
-    type = string
-    description = "Nome da chave pem"
-    default = "IaC"  
-}

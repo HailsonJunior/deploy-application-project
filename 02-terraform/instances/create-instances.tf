@@ -13,7 +13,7 @@ resource "aws_instance" "docker-hosts" {
 
     instance_type = var.instance_type
     ami = var.ami
-    key_name = var.key_pair
+    key_name = "${aws_key_pair.my-key.key_name}"
     security_groups = ["Iac_group"]
 
     root_block_device {
@@ -26,4 +26,9 @@ resource "aws_instance" "docker-hosts" {
         Projeto = "Tópicos Especiais"
         name = "${each.key}: ${lookup(each.value, "name", null)}"
     } 
+}
+
+resource "aws_key_pair" "my-key" {
+    key_name = "my-key"
+    public_key = "${file("~/.ssh/id_rsa.pub")}"
 }
