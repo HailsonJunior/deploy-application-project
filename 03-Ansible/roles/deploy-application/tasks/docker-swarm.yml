@@ -3,29 +3,37 @@
   shell: docker info
   changed_when: False
   register: docker_info
+  tags: verificar-swarm
 
 - name: Cria o cluster no servidor manager
   shell: docker swarm init --advertise-addr {{ ip_manager }}:2377
-  when: "docker_info.stdout.find('Swarm: active') == -1 and 'manager' in inventory_hostname"
+  when: "'manager' in inventory_hostname"
+  tags: init-swarm
 
-- name: Armazena o token de worker
-  shell: docker swarm join-token -q worker
-  changed_when: False
-  register: docker_worker_token
-  when: "docker_info.stdout.find('Swarm: active') == -1 and 'manager' in inventory_hostname"
+- name: Armazena join token worker
+  shell: docker swarm join-token worker | grep docker > /tmp/token-worker.sh
+  when: "'manager' in inventory_hostname"
+  tags: armazena-token-worker
 
-- name: Adiciona swarm worker1 no cluster
-  shell: docker swarm join --token "{{ docker_worker_token.stdout }}" {{ ip_manager }}:2377 
-  changed_when: False
-  when: "docker_info.stdout.find('Swarm: active') == -1
-   and docker_info.stdout.find('Swarm: pending') == -1
-   and 'worker1' in inventory_hostname"
+- name: Pega arquivo token
+  fetch:
+    src: /tmp/token-worker.sh
+    dest: files/token-worker.sh
+    flat: yes
+  when: "'manager' in inventory_hostname"
+  tags: fetch-token-file
 
-- name: Adiciona swarm worker2 no cluster
-  shell: docker swarm join --token "{{ docker_worker_token.stdout }}" {{ ip_manager }}:2377 
-  changed_when: False
-  when: "docker_info.stdout.find('Swarm: active') == -1
-   and docker_info.stdout.find('Swarm: pending') == -1
-   and 'worker2' in inventory_hostname  
+- name: Copia arquivo token worker para VMs workers
+  copy:
+    src: /home/ubuntu/deploy-application-project/03-Ansible/files/token-worker.sh
+    dest: /home/ubuntu/token-worker.sh
+    mode: '0777'
+  when: "'worker' in inventory_hostname"
+  tags: copy-token-file
 
-...   
+- name: Adiciona node host ao cluster
+  shell: bash /home/ubuntu/token-worker.sh
+  when: "'worker' in inventory_hostname"
+  tags: add-node-worker
+
+...    

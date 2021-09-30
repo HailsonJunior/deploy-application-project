@@ -1,5 +1,5 @@
 ---
 ## Nodes IPs
-ip_manager: 
-ip_worker1:
-ip_worker2:
+ip_manager: 172.31.93.80
+ip_worker1: 172.31.87.80
+ip_worker2: 172.31.84.185
