@@ -12,9 +12,7 @@
         "source_ami": "{{user `ami_id`}}",
         "instance_type": "{{user `instance_type`}}",
         "ssh_username": "{{user `ssh_username`}}",
-        "ami_name": "hosts-docker",
-        "ssh_keypair_name": "IaC",
-        "ssh_private_key_file": "IaC.pem"
+        "ami_name": "hosts-docker"
     }],
 
     "provisioners": [
