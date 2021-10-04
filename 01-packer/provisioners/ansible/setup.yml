@@ -4,6 +4,10 @@
   become: yes
   become_method: sudo
   tasks:
+    - name: Upgrade packages
+      apt:
+        update_cache: yes
+        
     - name: Install Docker
       shell: curl -fsSL https://get.docker.com/ | bash -
 
