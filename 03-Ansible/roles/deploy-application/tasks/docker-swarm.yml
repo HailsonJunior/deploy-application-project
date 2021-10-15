@@ -1,10 +1,4 @@
 ---
-- name: Verifica se o Docker Swarm está habilitado
-  shell: docker info
-  changed_when: False
-  register: docker_info
-  tags: verificar-swarm
-
 - name: Cria o cluster no servidor manager
   shell: docker swarm init --advertise-addr {{ ip_manager }}:2377
   when: "'manager' in inventory_hostname"

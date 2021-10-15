@@ -1,0 +1,42 @@
+---
+- name: Create nginx directory
+  file:
+    path: /home/ubuntu/nginx
+    state: directory
+  tags: create-nginx-dir
+
+- name: Create pagina-web directory
+  file:
+    path: /home/ubuntu/nginx/pagina-web
+    state: directory
+  tags: create-pagina-web-dir
+
+- name: Copy page file
+  copy:
+    src: files/pagina-web/
+    dest: /home/ubuntu/nginx/pagina-web/
+  tags: copy-page-files
+
+- name: Copy dockerfile
+  copy:
+    src: /home/ubuntu/deploy-application-project/03-Ansible/files/Dockerfile
+    dest: /home/ubuntu/nginx/
+  tags: copy-dockerfile
+
+- name: Copy docker-compose file
+  copy:
+    src: /home/ubuntu/deploy-application-project/03-Ansible/files/docker-compose.yml
+    dest: /home/ubuntu/nginx/
+  when: "'manager' in inventory_hostname"
+  tags: copy-docker-compose
+
+- name: Build Docker image
+  shell: 'docker image build -t site:1.0 /home/ubuntu/nginx/'
+  tags: build-image
+
+- name: Run docker stack deploy
+  shell: 'docker stack deploy -c /home/ubuntu/nginx/docker-compose.yml pagina-web'
+  when: "'manager' in inventory_hostname"
+  tags: docker-stack-deploy
+
+...

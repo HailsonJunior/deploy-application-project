@@ -1,0 +1,96 @@
+:root {
+    --gray-light: #646966;
+    --gray-meddle: #585C5A;
+    --gray-dark: #404241;
+    --white: #fff;
+}
+
+/* #dark-mode {
+    cursor: pointer;
+} */
+
+p .dark {
+    color: var(--white);
+}
+
+.dark-title {
+    font-weight: bold!important;
+    color: var(--white)!important;
+}
+
+.i-dark, fa fa-adjust{
+   color: var(--white);
+}
+
+.dark-card {
+    background-color: var(--gray-dark)!important;
+    color: var(--white)!important;
+}
+
+.card-text {
+    text-align: justify;
+}
+
+body {
+    background: #6147d8;
+    background: -webkit-linear-gradient(to left, #6147d8, #90b7e4);
+    background: linear-gradient(to left, #6147d8, #9dbfe6);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.body-dark{
+    background: #1c0d5c;
+    background: -webkit-linear-gradient(to left, #1c0d5c, #637db3);
+    background: linear-gradient(to left, #1c0d5c, #637db3);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Button Dark Mode */
+
+
+.checkbox {
+	opacity: 0;
+	position: absolute;
+}
+
+.label {
+	background-color: #111;
+	border-radius: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	position: relative;
+	height: 20px;
+	width: 38px;
+	transform: scale(1.5);
+}
+
+.label .ball {
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	height: 16px;
+	width: 16px;
+	transform: translateX(0px);
+	transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+	transform: translateX(18px);
+}
+
+.fa-moon-o {
+	color: #007bff;
+    font-size: 0.8rem!important;
+}
+
+.fa-sun-o {
+	color: #f39c12;
+    font-size: 0.8rem!important;
+}
