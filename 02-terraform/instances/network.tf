@@ -48,3 +48,15 @@ resource "aws_network_interface_attachment" "attach-manager-interface" {
     network_interface_id = aws_network_interface.network-manager.id
     device_index = 0
 }
+
+resource "aws_network_interface_attachment" "attach-worker1-interface" {
+    instance_id = aws_instance.worker1.id
+    network_interface_id = aws_network_interface.network-worker1.id
+    device_index = 0
+}
+
+resource "aws_network_interface_attachment" "attach-manager-interface" {
+    instance_id = aws_instance.worker2.id
+    network_interface_id = aws_network_interface.network-worker2.id
+    device_index = 0
+}
