@@ -14,7 +14,7 @@ resource "aws_instance" "manager" {
     }
 
     tags = {
-        name = "manager"
+        Name = "manager"
     } 
 }
 
@@ -34,7 +34,7 @@ resource "aws_instance" "worker1" {
     }
 
     tags = {
-        name = "manager"
+        Name = "manager"
     } 
 }
 
@@ -54,7 +54,7 @@ resource "aws_instance" "worker2" {
     }
 
     tags = {
-        name = "manager"
+        Name = "manager"
     } 
 }
 

@@ -16,7 +16,7 @@ resource "aws_security_group" "allow_ssh" {
 
 resource "aws_network_interface" "network-manager" {
     subnet_id   = var.subnet_id
-    private_ips = ["172.31.83.152"]
+    private_ips = ["172.31.83.2"]
     security_groups = [aws_security_group.allow_ssh.id]
 
     tags = {
@@ -26,7 +26,7 @@ resource "aws_network_interface" "network-manager" {
 
 resource "aws_network_interface" "network-worker1" {
     subnet_id   = var.subnet_id
-    private_ips = ["172.31.83.153"]
+    private_ips = ["172.31.83.3"]
     security_groups = [aws_security_group.allow_ssh.id]
 
     tags = {
@@ -36,7 +36,7 @@ resource "aws_network_interface" "network-worker1" {
 
 resource "aws_network_interface" "network-worker2" {
     subnet_id   = var.subnet_id
-    private_ips = ["172.31.83.154"]
+    private_ips = ["172.31.83.4"]
     security_groups = [aws_security_group.allow_ssh.id]
 
     tags = {
