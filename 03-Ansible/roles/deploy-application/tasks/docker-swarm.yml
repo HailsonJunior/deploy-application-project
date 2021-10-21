@@ -19,7 +19,7 @@
 
 - name: Copia arquivo token worker para VMs workers
   copy:
-    src: /home/ubuntu/deploy-application-project/03-Ansible/files/token-worker.sh
+    src: /home/ubuntu/infrastructure-as-code-project/03-Ansible/files/token-worker.sh
     dest: /home/ubuntu/token-worker.sh
     mode: '0777'
   when: "'worker' in inventory_hostname"

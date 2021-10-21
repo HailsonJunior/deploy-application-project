@@ -19,13 +19,13 @@
 
 - name: Copy dockerfile
   copy:
-    src: /home/ubuntu/deploy-application-project/03-Ansible/files/Dockerfile
+    src: /home/ubuntu/infrastructure-as-code-project/03-Ansible/files/Dockerfile
     dest: /home/ubuntu/nginx/
   tags: copy-dockerfile
 
 - name: Copy docker-compose file
   copy:
-    src: /home/ubuntu/deploy-application-project/03-Ansible/files/docker-compose.yml
+    src: /home/ubuntu/infrastructure-as-code-project/03-Ansible/files/docker-compose.yml
     dest: /home/ubuntu/nginx/
   when: "'manager' in inventory_hostname"
   tags: copy-docker-compose

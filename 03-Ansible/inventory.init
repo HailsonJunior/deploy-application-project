@@ -1,6 +1,6 @@
 [manager]
-manager ansible_host=172.31.95.191
+manager ansible_host=172.31.83.2
 
 [workers]
-worker1 ansible_host=172.31.86.89
-worker2 ansible_host=172.31.89.134
+worker1 ansible_host=172.31.83.3
+worker2 ansible_host=172.31.83.4
