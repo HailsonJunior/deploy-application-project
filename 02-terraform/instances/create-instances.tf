@@ -2,7 +2,6 @@ resource "aws_instance" "manager" {
     instance_type = var.instance_type
     ami = var.ami
     key_name = "${aws_key_pair.my-key.key_name}"
-    security_groups = ["Iac_group"]
     network_interface {
         network_interface_id = "${aws_network_interface.network-manager.id}"
         device_index = 0
@@ -23,7 +22,6 @@ resource "aws_instance" "worker1" {
     instance_type = var.instance_type
     ami = var.ami
     key_name = "${aws_key_pair.my-key.key_name}"
-    security_groups = ["Iac_group"]
     network_interface {
         network_interface_id = "${aws_network_interface.network-worker1.id}"
         device_index = 0
@@ -44,7 +42,6 @@ resource "aws_instance" "worker2" {
     instance_type = var.instance_type
     ami = var.ami
     key_name = "${aws_key_pair.my-key.key_name}"
-    security_groups = ["Iac_group"]
     network_interface {
         network_interface_id = "${aws_network_interface.network-worker2.id}"
         device_index = 0
