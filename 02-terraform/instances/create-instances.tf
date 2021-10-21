@@ -1,5 +1,5 @@
 resource "aws_instance" "manager" {
-    name: "manager"
+    name = "manager"
     instance_type = var.instance_type
     ami = var.ami
     key_name = "${aws_key_pair.my-key.key_name}"
