@@ -1,16 +1,5 @@
-resource "aws_instance" "docker-hosts" {
-    for_each = {
-        node1 = {
-            name = "Manager"
-        }
-        node2 = {
-            name = "Worker1"
-        }
-        node3 = {
-            name = "Worker2"
-        }
-    }
-
+resource "aws_instance" "manager" {
+    name: "manager"
     instance_type = var.instance_type
     ami = var.ami
     key_name = "${aws_key_pair.my-key.key_name}"
@@ -23,8 +12,7 @@ resource "aws_instance" "docker-hosts" {
     }
 
     tags = {
-        Projeto = "Tópicos Especiais"
-        name = "${each.key}: ${lookup(each.value, "name", null)}"
+        name = "manager"
     } 
 }
 
